@@ -1,41 +1,69 @@
-### ¡Hola! 👋 Soy [Paola Montesinos]
+### ¡Hola! 👋 Soy Paola Montesinos
 
-Soy una apasionada del desarrollo de software y el análisis de datos, enfocada en transformar datos en soluciones prácticas y eficientes. Actualmente sigo ampliando mis conocimientos técnicos y buscando nuevos retos profesionales.
+**Account Manager B2B y Consultora Comercial especializada en entornos tecnológicos y SaaS**, con experiencia en gestión de carteras de clientes, estrategia comercial y optimización de procesos. Actualmente ampliando mi perfil técnico como **Data Analyst** en la Fundación Somos F5.
 
----
-
-### 🛠️ Tecnologías y Herramientas
-
-<p align="left">
-  <!-- Puedes usar etiquetas HTML o servicios de badges para tus tecnologías -->
-  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
-  <img src="https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=postgresql&logoColor=white" alt="SQL" />
-  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git" />
-  <img src="https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white" alt="VS Code" />
-</p>
-
-- **Lenguajes:** Python, SQL
-- **Control de Versiones:** Git, GitHub
-- **Otras herramientas:** Jupyter Notebooks, VS Code
+[![Python](https://img.shields.io/badge/Python-3.11-blue)](https://img.shields.io/badge/Python-3.11-blue)
+[![Estado](https://img.shields.io/badge/Estado-Activa-success)](https://img.shields.io/badge/Estado-Activa-success)
 
 ---
 
-### 🚀 Proyectos Destacados
-
-*   **[BOOTCAMP RETO 1 HOTEL PLAZA CATALUNYA](enlace-al-repo)**: Breve descripción de qué hace el proyecto, qué problema resuelve y qué tecnologías utilizaste.
-*   **[BOOTCAMP RETO 2 HOTEL IBIS BARCELONA](enlace-al-repo)**: Breve descripción del proyecto y sus funcionalidades principales.
-
----
-
-### 📊 Estadísticas de GitHub
-
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=TU_USUARIO_DE_GITHUB&show_icons=true&theme=radical" alt="GitHub Stats" />
-</p>
+## 📌 Índice
+* [Sobre Mí y Contacto](#sobre-mí-y-contacto)
+* [Proyecto Destacado: EcoShop (EDA)](#proyecto-destacado-ecoshop-eda)
+* [Stack Tecnológico y Competencias](#stack-tecnológico-y-competencias)
 
 ---
 
-### 📫 ¿Cómo contactarme?
+## 🌐 Sobre Mí y Contacto
 
-- **LinkedIn:** [www.linkedin.com/in/paolamontesinos)
-- **Email:** paola.montesinosfernandez@gmail.com
+* **LinkedIn:** [www.linkedin.com/in/paolamontesinos](https://www.linkedin.com/in/paolamontesinos)
+* **Portafolio / Casos de Estudio:** [Enlace a tu Portafolio]
+* **Formación Actual:** 
+  * **Data Analyst Bootcamp** | Fundación Somos F5 (Python, SQL, Git, Jupyter Notebooks)
+  * **Máster en Dirección Comercial y Ventas** | Formato Educativo Escuela de Negocios Barcelona
+
+---
+
+## 🚀 Proyecto Destacado: Análisis de Ventas y Retención - EcoShop
+
+Este proyecto presenta un Análisis Exploratorio de Datos (EDA) sobre el comportamiento de compra de los usuarios de EcoShop, con el objetivo de *identificar oportunidades para reducir la tasa de abandono* durante el periodo *Enero 2025 - Diciembre 2025*.
+
+### 💡 Resumen Ejecutivo y Hallazgos
+> **Insight principal:** Los clientes que realizan una segunda compra dentro de los primeros 30 días tienen un *LTV (Lifetime Value) 3 veces superior al resto*.
+
+* **Estacionalidad marcada:** El pico de ventas ocurre en noviembre (+42% respecto a la media anual) impulsado por el Black Friday.
+* **Fricción en móviles:** La columna `device_type` reveló que el 70% del tráfico viene de `mobile`, pero la conversión es un 1.8% menor que en `desktop`.
+* **Categoría estrella:** Los productos de la categoría `Hogar_Sostenible` concentran el mayor margen de beneficio neto.
+
+### 📊 Tabla de KPIs
+| Métrica | 2024 | 2025 | Variación |
+| :--- | :---: | :---: | ---: |
+| Ingresos Totales | \$450,000[cite: 3] | \$585,000[cite: 3] | +30.0% |
+| Ticket Promedio | \$42.50[cite: 3] | \$46.80[cite: 3] | +10.1%|
+| Tasa de Conversión | 2.4%[cite: 3] | 2.9%[cite: 3] | +0.5 pp |
+| Tasa de Abandono (Churn) | 18.0%[cite: 3] | 14.5%
+
+### 🛠️ Metodología y Flujo de Trabajo
+1. **Extracción:** Conexión a base de datos PostgreSQL mediante SQLAlchemy.
+2. **Limpieza:** Tratamiento de valores nulos en `fecha_entrega` y estandarización de categorías.
+3. **Análisis:** Segmentación de clientes mediante análisis RFM (Recencia, Frecuencia, Valor Monetario).
+4. **Visualización:** Creación de dashboard interactivo en Power BI y gráficos estáticos con Seaborn.
+
+**Estado del proyecto:**
+* [x] Limpieza y validación del dataset
+* [x] Análisis exploratorio y pruebas de hipótesis
+* [ ] Automatización del pipeline semanal con Airflow
+* [ ] Modelo predictivo de *churn*
+
+### 💻 Código Destacado
+Consulta SQL utilizada para calcular el ticket promedio por categoría:
+
+```sql
+SELECT 
+    categoria,
+    COUNT(DISTINCT order_id) AS total_pedidos,
+    ROUND(AVG(total_venta), 2) AS ticket_promedio
+FROM ventas_2025
+WHERE estado_pedido = 'Completado'
+GROUP BY categoria
+ORDER BY ticket_promedio DESC;
